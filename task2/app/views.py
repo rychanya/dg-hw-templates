@@ -1,19 +1,36 @@
 from django.shortcuts import render
 
 
+nav_bar = {
+            'examples': 'Примеры',
+            'contacts': 'Контакты',
+            'about': 'О проекте',
+        }
+
 def home_view(request):
     template_name = 'app/home.html'
-    return render(request, template_name)
+    context = {
+        'nav': nav_bar,
+    }
+    return render(request, template_name, context)
 
 
 def about_view(request):
     template_name = 'app/about.html'
-    return render(request, template_name)
+    context = {
+        'nav': nav_bar,
+        'active_nav_bar': 'about',
+    }
+    return render(request, template_name, context)
 
 
 def contacts_view(request):
     template_name = 'app/contacts.html'
-    return render(request, template_name)
+    context = {
+        'nav': nav_bar,
+        'active_nav_bar': 'contacts',
+    }
+    return render(request, template_name, context)
 
 
 def examples_view(request):
@@ -33,7 +50,8 @@ def examples_view(request):
         'img': 'imac.jpg'
     }]
     context = {
-        'items': items
+        'items': items,
+        'nav': nav_bar,
+        'active_nav_bar': 'examples',
     }
-    return render(request, template_name,
-                  context)
+    return render(request, template_name, context)
